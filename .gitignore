@@ -5,11 +5,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
-# Secrets / local config — mai committare
-.env
-!.env.example
-devops/cloud/terraform.tfvars
-devops/cloud/backend.hcl
+
 
 # Terraform
 devops/cloud/.terraform/
