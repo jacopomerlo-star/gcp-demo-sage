@@ -1,6 +1,6 @@
 output "cloud_run_url" {
   description = "URL pubblico dell'API di Sage"
-  value       = google_cloud_run_v2_service.sage.uri
+  value       = google_cloud_run_v2_service.sage_backend.uri
 }
 
 output "docs_bucket" {
