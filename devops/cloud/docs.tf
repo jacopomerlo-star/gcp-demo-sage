@@ -1,4 +1,4 @@
-source "google_storage_bucket" "sage_docs" {
+resource "google_storage_bucket" "sage_docs" {
   name     = "${var.resource_prefix}-sage-docs"
   project  = var.project_id
   location = var.region
