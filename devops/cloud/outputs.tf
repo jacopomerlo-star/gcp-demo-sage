@@ -37,3 +37,7 @@ output "sage_run_service_account" {
   description = "Service account con cui gira l'API su Cloud Run"
   value       = google_service_account.sage_run.email
 }
+output "instructions_bucket" {
+  description = "Bucket delle istruzioni aggiuntive di Sage"
+  value       = google_storage_bucket.sage_instructions.name
+}

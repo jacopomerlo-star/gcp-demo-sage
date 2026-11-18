@@ -22,6 +22,10 @@ class AppConfig(BaseSettings):
     firestore_collection: str = "chunks"
     top_k: int = 5
 
+    # Cloud Storage (instructions bucket)
+    instructions_bucket: str = ""
+    instructions_blob: str = "istruzioni.md"
+
     # Vertex AI models
     chat_model: str = "gemini-2.5-flash"
     embedding_model: str = "text-embedding-004"
@@ -41,12 +45,22 @@ class AppConfig(BaseSettings):
         `bq_dataset` is the base name; after validation it is always the final dataset id.
         """
         if not self.resource_prefix:
+            if not self.instructions_bucket:
+                self.instructions_bucket = f"{self.project_id}-instructions"
             return self
-        self.firestore_database = self.resource_prefix
+
+        clean_prefix = self.resource_prefix.replace(".", "-")
+        self.firestore_database = f"{clean_prefix}-db"
         # BigQuery dataset ids allow only letters, digits and underscores.
-        self.bq_dataset = f"{self.resource_prefix.replace('-', '_')}_{self.bq_dataset}"
+        self.bq_dataset = f"{clean_prefix.replace('-', '_')}_{self.bq_dataset}"
+        if not self.instructions_bucket:
+            self.instructions_bucket = f"{clean_prefix}-instructions"
         return self
 
+
+@lru_cache
+def get_app_config() -> AppConfig:
+    return AppConfig()
 
 @lru_cache
 def get_app_config() -> AppConfig:
