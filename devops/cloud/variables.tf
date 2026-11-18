@@ -34,4 +34,4 @@ variable "bq_table" {
   description = "Nome della tabella BigQuery per il log delle domande"
   type        = string
   default     = "question_log"
-}
+} 

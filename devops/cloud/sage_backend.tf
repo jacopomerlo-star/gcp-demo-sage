@@ -7,7 +7,7 @@ variable "container_image" {
 variable "app_name" {
   description = "Nome base usato per Cloud Run, Artifact Registry e il service account applicativo."
   type        = string
-  default     = "sage-backend"
+  default     = "sage"
 }
 
 
